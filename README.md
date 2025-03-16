@@ -1,11 +1,11 @@
 # 📊 Financial RAG Q&A System  
-🔎 **A Retrieval-Augmented Generation (RAG) system** that answers **finance-related questions** based on company financial reports. The system retrieves relevant **10-K filings**, processes them using **hybrid retrieval (BM25 + FAISS)**, re-ranks with a **Cross-Encoder**, and generates a **fact-checked response** using **LLM Guard**.
+**A Retrieval-Augmented Generation (RAG) system** that answers **finance-related questions** based on company financial reports. The system retrieves relevant **10-K filings**, processes them using **hybrid retrieval (BM25 + FAISS)**, re-ranks with a **Cross-Encoder**, and generates a **fact-checked response** using **LLM Guard**.
 
-🚀 **Live Demo:** [Check it out on Streamlit!](https://financial-rag-app-cbawf4kxndavkse7bzcceg.streamlit.app/)
+**Live Demo:** [Check it out on Streamlit!](https://financial-rag-app-cbawf4kxndavkse7bzcceg.streamlit.app/)
 
 ---
 
-## 📌 **Features**
+## **Features**
 ✅ **Extracts Financial Data from PDFs**  
 ✅ **Hybrid Retrieval (BM25 + FAISS) for accuracy**  
 ✅ **Cross-Encoder for better ranking**  

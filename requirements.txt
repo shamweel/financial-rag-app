@@ -4,6 +4,6 @@ faiss-cpu
 pymupdf
 rank-bm25
 transformers
-torch
+torch==2.0.1 
 llm-guard
 numpy

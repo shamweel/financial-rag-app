@@ -78,7 +78,7 @@ def validate_query_with_guard(query):
     processed_prompt, validity_map, risk_scores = lg.evaluate.scan_prompt(
         scanners=input_scanners, prompt=query, fail_fast=True
     )
-    return all(validity_map.values()), processed_prompt if all(validity_map.values()) else "⚠️ Invalid query! Please ask a finance-related question."
+    return all(validity_map.values()), processed_prompt if all(validity_map.values()) else "Invalid query! Please ask a finance-related question."
 
 def validate_response_with_guard(prompt, response):
     processed_output, validity_map, risk_scores = lg.evaluate.scan_output(
@@ -199,7 +199,7 @@ def hybrid_retrieve(query, top_k=20, bm25_weight=0.7, faiss_weight=0.3):
     bm25_top_k_indices = np.argsort(bm25_scores)[-top_k * 2:]  # Retrieve extra results
 
     # FAISS Retrieval (Using SentenceTransformer)
-    query_embedding = retrieval_model.encode([query], convert_to_numpy=True)  # ✅ Use retrieval_model
+    query_embedding = retrieval_model.encode([query], convert_to_numpy=True)  # Use retrieval_model
     distances, faiss_indices = index.search(query_embedding, top_k * 2)
 
     # Convert FAISS distances to scores

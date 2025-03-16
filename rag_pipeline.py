@@ -86,9 +86,9 @@ def validate_response_with_guard(prompt, response):
     )
     factual_score = risk_scores.get("FactualConsistency", 1.0)
     if not validity_map["Bias"] or not validity_map["Relevance"]:
-        return False, "⚠️ AI response validation failed due to harmful or irrelevant content."
+        return False, "AI response validation failed due to harmful or irrelevant content."
     if factual_score < 0.4:
-        return True, f"⚠️ This response may not be 100% accurate: {processed_output}"
+        return True, f"This response may not be 100% accurate: {processed_output}"
     return True, processed_output
 
 def compute_confidence_score(validated_response, context, retrieved_chunks):
@@ -162,7 +162,7 @@ def query_based_filtering(query, retrieved_chunks):
     :return: Filtered list of relevant text chunks
     """
     query_type = determine_query_type(query)
-    print(f"🔎 Query Type Detected: {query_type.capitalize()}")
+    print(f"Query Type Detected: {query_type.capitalize()}")
 
     filtered_chunks = []
     
@@ -177,10 +177,10 @@ def query_based_filtering(query, retrieved_chunks):
             filtered_chunks.append(chunk)
 
     if not filtered_chunks:
-        print("⚠️ No highly relevant chunks found with financial numbers. Returning the original retrieved results.")
+        print("No highly relevant chunks found with financial numbers. Returning the original retrieved results.")
         return retrieved_chunks  # Return original results if no strict match
     
-    print(f"✅ Filtered {len(filtered_chunks)} chunks containing financial numbers.")
+    print(f"Filtered {len(filtered_chunks)} chunks containing financial numbers.")
     return filtered_chunks
 
 def hybrid_retrieve(query, top_k=20, bm25_weight=0.7, faiss_weight=0.3):
@@ -192,7 +192,7 @@ def hybrid_retrieve(query, top_k=20, bm25_weight=0.7, faiss_weight=0.3):
     :param top_k: Number of top results to retrieve
     :return: List of relevant text chunks
     """
-    print("🔎 Running Hybrid Retrieval (BM25 + FAISS) with Query-Based Filtering...")
+    print("Running Hybrid Retrieval (BM25 + FAISS) with Query-Based Filtering...")
 
     # BM25 Retrieval
     bm25_scores = bm25.get_scores(query.split())
@@ -221,7 +221,7 @@ def hybrid_retrieve(query, top_k=20, bm25_weight=0.7, faiss_weight=0.3):
     # Apply query-based filtering
     filtered_chunks = query_based_filtering(query, retrieved_chunks)
 
-    print(f"✅ Final Retrieval: {len(filtered_chunks)} highly relevant chunks.")
+    print(f"Final Retrieval: {len(filtered_chunks)} highly relevant chunks.")
     return filtered_chunks
 
 def re_rank_results(query, retrieved_chunks, top_k=5):

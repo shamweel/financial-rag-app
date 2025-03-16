@@ -6,9 +6,9 @@ import rag_pipeline  # Import the pipeline module
 def reload_rag_pipeline():
     try:
         importlib.reload(rag_pipeline)
-        st.sidebar.success("✅ RAG pipeline reloaded successfully!")
+        st.sidebar.success("RAG pipeline reloaded successfully!")
     except Exception as e:
-        st.sidebar.error(f"❌ Error reloading pipeline: {e}")
+        st.sidebar.error(f"Error reloading pipeline: {e}")
 
 # 🚀 Initialize Streamlit App
 st.set_page_config(page_title="Financial Q&A - RAG System", layout="wide")
@@ -20,7 +20,7 @@ st.write(
 )
 
 # 🔄 Sidebar: Reload Button
-if st.sidebar.button("🔄 Reload RAG System"):
+if st.sidebar.button("Reload RAG System"):
     reload_rag_pipeline()
 
 # 📝 User Query Input
@@ -30,7 +30,7 @@ query_input = st.text_input(
 )
 
 # 🚀 Button to Process Query
-if st.button("🔍 Get Answer"):
+if st.button("Get Answer"):
     if query_input.strip():  # Ensure non-empty input
         with st.spinner("Processing your query... ⏳"):
             try:
@@ -43,21 +43,21 @@ if st.button("🔍 Get Answer"):
                     response, confidence = result, None  # Fallback if confidence score isn't returned
 
                 # 🎯 Display AI Response
-                st.subheader("📌 AI Generated Answer:")
+                st.subheader("📌AI Generated Answer:")
                 st.write(f"**{response}**")  # Ensure only the answer is displayed
 
                 # 🔥 Show Confidence Score (Default to 50% if missing)
                 if confidence is not None:
-                    st.metric(label="🔍 Confidence Score", value=f"{confidence:.2f}")
+                    st.metric(label="Confidence Score", value=f"{confidence:.2f}")
                 else:
-                    st.metric(label="🔍 Confidence Score", value="N/A")
+                    st.metric(label="Confidence Score", value="N/A")
 
             except ModuleNotFoundError:
-                st.error("❌ RAG pipeline module not found. Please ensure it is installed correctly.")
+                st.error("RAG pipeline module not found. Please ensure it is installed correctly.")
             except AttributeError:
-                st.error("❌ Unexpected error: Check if `generate_guarded_response` exists in `rag_pipeline`.")
+                st.error("Unexpected error: Check if `generate_guarded_response` exists in `rag_pipeline`.")
             except Exception as e:
-                st.error(f"❌ An error occurred: {e}")
+                st.error(f"An error occurred: {e}")
 
     else:
         st.warning("⚠️ Please enter a valid financial question.")

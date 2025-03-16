@@ -2,7 +2,7 @@ import streamlit as st
 import importlib
 import rag_pipeline  # Import the pipeline module
 
-# 🚀 Function to Reload the Pipeline
+# Function to Reload the Pipeline
 def reload_rag_pipeline():
     try:
         importlib.reload(rag_pipeline)
@@ -10,26 +10,26 @@ def reload_rag_pipeline():
     except Exception as e:
         st.sidebar.error(f"Error reloading pipeline: {e}")
 
-# 🚀 Initialize Streamlit App
+# Initialize Streamlit App
 st.set_page_config(page_title="Financial Q&A - RAG System", layout="wide")
 st.title("📊 Financial Q&A System - Retrieval-Augmented Generation (RAG)")
 
 st.write(
-    "🔎 This system answers **finance-related questions** based on company financial reports "
+    "This system answers **finance-related questions** based on company financial reports "
     "from the last two years. **Enter a query below to get insights!**"
 )
 
-# 🔄 Sidebar: Reload Button
+# Sidebar: Reload Button
 if st.sidebar.button("Reload RAG System"):
     reload_rag_pipeline()
 
-# 📝 User Query Input
+# User Query Input
 query_input = st.text_input(
     "💬 **Ask a Financial Question:**",
     placeholder="e.g., What was Amazon's net profit in 2023?"
 )
 
-# 🚀 Button to Process Query
+# Button to Process Query
 if st.button("Get Answer"):
     if query_input.strip():  # Ensure non-empty input
         with st.spinner("Processing your query... ⏳"):
@@ -42,11 +42,11 @@ if st.button("Get Answer"):
                 else:
                     response, confidence = result, None  # Fallback if confidence score isn't returned
 
-                # 🎯 Display AI Response
+                # Display AI Response
                 st.subheader("📌AI Generated Answer:")
                 st.write(f"**{response}**")  # Ensure only the answer is displayed
 
-                # 🔥 Show Confidence Score (Default to 50% if missing)
+                # Show Confidence Score (Default to 50% if missing)
                 if confidence is not None:
                     st.metric(label="Confidence Score", value=f"{confidence:.2f}")
                 else:
@@ -60,9 +60,9 @@ if st.button("Get Answer"):
                 st.error(f"An error occurred: {e}")
 
     else:
-        st.warning("⚠️ Please enter a valid financial question.")
+        st.warning("Please enter a valid financial question.")
 
-# ℹ️ Sidebar Information
+# Sidebar Information
 st.sidebar.title("ℹ️ How It Works")
 st.sidebar.markdown(
     """
@@ -74,6 +74,6 @@ st.sidebar.markdown(
     """
 )
 
-# ✅ Footer
+# Footer
 st.sidebar.markdown("---")
 st.sidebar.write("Developed as part of the AI/ML coursework 🎓")
